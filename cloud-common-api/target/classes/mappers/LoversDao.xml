@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruanjian.springcloud.dao.LoversDao">
+    <resultMap id="BaseResultMap" type="com.ruanjian.springcloud.entity.Lovers">
+        <!--@mbg.generated-->
+        <!--@Table lovers-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="boy_name" jdbcType="VARCHAR" property="boyName"/>
+        <result column="girl_name" jdbcType="VARCHAR" property="girlName"/>
+        <result column="boy_birth_date" jdbcType="TIMESTAMP" property="boyBirthDate"/>
+        <result column="girl_birth_date" jdbcType="TIMESTAMP" property="girlBirthDate"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="message" jdbcType="VARCHAR" property="message"/>
+        <result column="type" jdbcType="INTEGER" property="type"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="confession_date" jdbcType="TIMESTAMP" property="confessionDate"/>
+    </resultMap>
+
+
+
+
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, boy_name, girl_name, boy_birth_date, girl_birth_date, create_time, message, `type`,
+        update_time, confession_date
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from lovers
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--@mbg.generated-->
+        delete from lovers
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.ruanjian.springcloud.entity.Lovers"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into lovers (boy_name, girl_name, boy_birth_date,
+        girl_birth_date, create_time, message,
+        `type`, update_time, confession_date
+        )
+        values (#{boyName,jdbcType=VARCHAR}, #{girlName,jdbcType=VARCHAR}, #{boyBirthDate,jdbcType=TIMESTAMP},
+        #{girlBirthDate,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, #{message,jdbcType=VARCHAR},
+        #{type,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, #{confessionDate,jdbcType=TIMESTAMP}
+        )
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.ruanjian.springcloud.entity.Lovers"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into lovers
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="boyName != null">
+                boy_name,
+            </if>
+            <if test="girlName != null">
+                girl_name,
+            </if>
+            <if test="boyBirthDate != null">
+                boy_birth_date,
+            </if>
+            <if test="girlBirthDate != null">
+                girl_birth_date,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="message != null">
+                message,
+            </if>
+            <if test="type != null">
+                `type`,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="confessionDate != null">
+                confession_date,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="boyName != null">
+                #{boyName,jdbcType=VARCHAR},
+            </if>
+            <if test="girlName != null">
+                #{girlName,jdbcType=VARCHAR},
+            </if>
+            <if test="boyBirthDate != null">
+                #{boyBirthDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="girlBirthDate != null">
+                #{girlBirthDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="message != null">
+                #{message,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=INTEGER},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="confessionDate != null">
+                #{confessionDate,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.ruanjian.springcloud.entity.Lovers">
+        <!--@mbg.generated-->
+        update lovers
+        <set>
+            <if test="boyName != null">
+                boy_name = #{boyName,jdbcType=VARCHAR},
+            </if>
+            <if test="girlName != null">
+                girl_name = #{girlName,jdbcType=VARCHAR},
+            </if>
+            <if test="boyBirthDate != null">
+                boy_birth_date = #{boyBirthDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="girlBirthDate != null">
+                girl_birth_date = #{girlBirthDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="message != null">
+                message = #{message,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                `type` = #{type,jdbcType=INTEGER},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="confessionDate != null">
+                confession_date = #{confessionDate,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.ruanjian.springcloud.entity.Lovers">
+        <!--@mbg.generated-->
+        update lovers
+        set boy_name = #{boyName,jdbcType=VARCHAR},
+        girl_name = #{girlName,jdbcType=VARCHAR},
+        boy_birth_date = #{boyBirthDate,jdbcType=TIMESTAMP},
+        girl_birth_date = #{girlBirthDate,jdbcType=TIMESTAMP},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        message = #{message,jdbcType=VARCHAR},
+        `type` = #{type,jdbcType=INTEGER},
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+        confession_date = #{confessionDate,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateBatch" parameterType="java.util.List">
+        <!--@mbg.generated-->
+        update lovers
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="boy_name = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.boyName,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="girl_name = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.girlName,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="boy_birth_date = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.boyBirthDate,jdbcType=TIMESTAMP}
+                </foreach>
+            </trim>
+            <trim prefix="girl_birth_date = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.girlBirthDate,jdbcType=TIMESTAMP}
+                </foreach>
+            </trim>
+            <trim prefix="create_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
+                </foreach>
+            </trim>
+            <trim prefix="message = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.message,jdbcType=VARCHAR}
+                </foreach>
+            </trim>
+            <trim prefix="`type` = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.type,jdbcType=INTEGER}
+                </foreach>
+            </trim>
+            <trim prefix="update_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.updateTime,jdbcType=TIMESTAMP}
+                </foreach>
+            </trim>
+            <trim prefix="confession_date = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    when id = #{item.id,jdbcType=BIGINT} then #{item.confessionDate,jdbcType=TIMESTAMP}
+                </foreach>
+            </trim>
+        </trim>
+        where id in
+        <foreach close=")" collection="list" item="item" open="(" separator=", ">
+            #{item.id,jdbcType=BIGINT}
+        </foreach>
+    </update>
+    <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into lovers
+        (boy_name, girl_name, boy_birth_date, girl_birth_date, create_time, message, `type`,
+        update_time, confession_date)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.boyName,jdbcType=VARCHAR}, #{item.girlName,jdbcType=VARCHAR},
+            #{item.boyBirthDate,jdbcType=TIMESTAMP},
+            #{item.girlBirthDate,jdbcType=TIMESTAMP}, #{item.createTime,jdbcType=TIMESTAMP},
+            #{item.message,jdbcType=VARCHAR}, #{item.type,jdbcType=INTEGER}, #{item.updateTime,jdbcType=TIMESTAMP},
+            #{item.confessionDate,jdbcType=TIMESTAMP})
+        </foreach>
+    </insert>
+    <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="com.ruanjian.springcloud.entity.Lovers"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into lovers
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            boy_name,
+            girl_name,
+            boy_birth_date,
+            girl_birth_date,
+            create_time,
+            message,
+            `type`,
+            update_time,
+            confession_date,
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            #{boyName,jdbcType=VARCHAR},
+            #{girlName,jdbcType=VARCHAR},
+            #{boyBirthDate,jdbcType=TIMESTAMP},
+            #{girlBirthDate,jdbcType=TIMESTAMP},
+            #{createTime,jdbcType=TIMESTAMP},
+            #{message,jdbcType=VARCHAR},
+            #{type,jdbcType=INTEGER},
+            #{updateTime,jdbcType=TIMESTAMP},
+            #{confessionDate,jdbcType=TIMESTAMP},
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            <if test="id != null">
+                id = #{id,jdbcType=BIGINT},
+            </if>
+            boy_name = #{boyName,jdbcType=VARCHAR},
+            girl_name = #{girlName,jdbcType=VARCHAR},
+            boy_birth_date = #{boyBirthDate,jdbcType=TIMESTAMP},
+            girl_birth_date = #{girlBirthDate,jdbcType=TIMESTAMP},
+            create_time = #{createTime,jdbcType=TIMESTAMP},
+            message = #{message,jdbcType=VARCHAR},
+            `type` = #{type,jdbcType=INTEGER},
+            update_time = #{updateTime,jdbcType=TIMESTAMP},
+            confession_date = #{confessionDate,jdbcType=TIMESTAMP},
+        </trim>
+    </insert>
+    <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id"
+            parameterType="com.ruanjian.springcloud.entity.Lovers" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into lovers
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="boyName != null">
+                boy_name,
+            </if>
+            <if test="girlName != null">
+                girl_name,
+            </if>
+            <if test="boyBirthDate != null">
+                boy_birth_date,
+            </if>
+            <if test="girlBirthDate != null">
+                girl_birth_date,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="message != null">
+                message,
+            </if>
+            <if test="type != null">
+                `type`,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="confessionDate != null">
+                confession_date,
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="boyName != null">
+                #{boyName,jdbcType=VARCHAR},
+            </if>
+            <if test="girlName != null">
+                #{girlName,jdbcType=VARCHAR},
+            </if>
+            <if test="boyBirthDate != null">
+                #{boyBirthDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="girlBirthDate != null">
+                #{girlBirthDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="message != null">
+                #{message,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=INTEGER},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="confessionDate != null">
+                #{confessionDate,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            <if test="id != null">
+                id = #{id,jdbcType=BIGINT},
+            </if>
+            <if test="boyName != null">
+                boy_name = #{boyName,jdbcType=VARCHAR},
+            </if>
+            <if test="girlName != null">
+                girl_name = #{girlName,jdbcType=VARCHAR},
+            </if>
+            <if test="boyBirthDate != null">
+                boy_birth_date = #{boyBirthDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="girlBirthDate != null">
+                girl_birth_date = #{girlBirthDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="message != null">
+                message = #{message,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                `type` = #{type,jdbcType=INTEGER},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="confessionDate != null">
+                confession_date = #{confessionDate,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+</mapper>

@@ -4,6 +4,9 @@ import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.lang.UUID;
 import cn.hutool.http.HttpUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * 类 名 称：ImgDownLoad
@@ -11,7 +14,16 @@ import cn.hutool.http.HttpUtil;
  * 创建时间：2020-03-10 13:48
  * 创 建 人：renhao
  */
+@Configuration
 public class ImgDownLoad {
+    public static String UPLOADImgPath;
+
+    //注入
+    @Autowired(required = false)
+    public void setUPLOADED_FOLDER(@Value("${cbs.uploadImgPath}") String UPLOADImgPath) {
+        ImgDownLoad.UPLOADImgPath = UPLOADImgPath;
+    }
+
     /**
      * 下载图片
      * 返回图片本地地址

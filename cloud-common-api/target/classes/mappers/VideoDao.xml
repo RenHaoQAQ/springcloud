@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruanjian.springcloud.dao.VideoDao">
+  <resultMap id="BaseResultMap" type="com.ruanjian.springcloud.entity.Video">
+    <!--@mbg.generated-->
+    <!--@Table video-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="img_path" jdbcType="VARCHAR" property="imgPath" />
+    <result column="img_url" jdbcType="VARCHAR" property="imgUrl" />
+    <result column="video_path" jdbcType="VARCHAR" property="videoPath" />
+    <result column="video_url" jdbcType="VARCHAR" property="videoUrl" />
+    <result column="video_title" jdbcType="VARCHAR" property="videoTitle" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="m3u8_url" jdbcType="VARCHAR" property="m3u8Url" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, img_path, img_url, video_path, video_url, video_title, create_date, m3u8_url
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from video
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from video
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.ruanjian.springcloud.entity.Video" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into video (img_path, img_url, video_path, 
+      video_url, video_title, create_date, 
+      m3u8_url)
+    values (#{imgPath,jdbcType=VARCHAR}, #{imgUrl,jdbcType=VARCHAR}, #{videoPath,jdbcType=VARCHAR}, 
+      #{videoUrl,jdbcType=VARCHAR}, #{videoTitle,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{m3u8Url,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.ruanjian.springcloud.entity.Video" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into video
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="imgPath != null">
+        img_path,
+      </if>
+      <if test="imgUrl != null">
+        img_url,
+      </if>
+      <if test="videoPath != null">
+        video_path,
+      </if>
+      <if test="videoUrl != null">
+        video_url,
+      </if>
+      <if test="videoTitle != null">
+        video_title,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="m3u8Url != null">
+        m3u8_url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="imgPath != null">
+        #{imgPath,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUrl != null">
+        #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="videoPath != null">
+        #{videoPath,jdbcType=VARCHAR},
+      </if>
+      <if test="videoUrl != null">
+        #{videoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="videoTitle != null">
+        #{videoTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="m3u8Url != null">
+        #{m3u8Url,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ruanjian.springcloud.entity.Video">
+    <!--@mbg.generated-->
+    update video
+    <set>
+      <if test="imgPath != null">
+        img_path = #{imgPath,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUrl != null">
+        img_url = #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="videoPath != null">
+        video_path = #{videoPath,jdbcType=VARCHAR},
+      </if>
+      <if test="videoUrl != null">
+        video_url = #{videoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="videoTitle != null">
+        video_title = #{videoTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="m3u8Url != null">
+        m3u8_url = #{m3u8Url,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ruanjian.springcloud.entity.Video">
+    <!--@mbg.generated-->
+    update video
+    set img_path = #{imgPath,jdbcType=VARCHAR},
+      img_url = #{imgUrl,jdbcType=VARCHAR},
+      video_path = #{videoPath,jdbcType=VARCHAR},
+      video_url = #{videoUrl,jdbcType=VARCHAR},
+      video_title = #{videoTitle,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      m3u8_url = #{m3u8Url,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update video
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="img_path = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.imgPath,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="img_url = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.imgUrl,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="video_path = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.videoPath,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="video_url = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.videoUrl,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="video_title = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.videoTitle,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="create_date = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.createDate,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="m3u8_url = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.m3u8Url,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=INTEGER}
+    </foreach>
+  </update>
+  <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into video
+    (img_path, img_url, video_path, video_url, video_title, create_date, m3u8_url)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.imgPath,jdbcType=VARCHAR}, #{item.imgUrl,jdbcType=VARCHAR}, #{item.videoPath,jdbcType=VARCHAR}, 
+        #{item.videoUrl,jdbcType=VARCHAR}, #{item.videoTitle,jdbcType=VARCHAR}, #{item.createDate,jdbcType=TIMESTAMP}, 
+        #{item.m3u8Url,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="com.ruanjian.springcloud.entity.Video" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into video
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      img_path,
+      img_url,
+      video_path,
+      video_url,
+      video_title,
+      create_date,
+      m3u8_url,
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      #{imgPath,jdbcType=VARCHAR},
+      #{imgUrl,jdbcType=VARCHAR},
+      #{videoPath,jdbcType=VARCHAR},
+      #{videoUrl,jdbcType=VARCHAR},
+      #{videoTitle,jdbcType=VARCHAR},
+      #{createDate,jdbcType=TIMESTAMP},
+      #{m3u8Url,jdbcType=VARCHAR},
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=INTEGER},
+      </if>
+      img_path = #{imgPath,jdbcType=VARCHAR},
+      img_url = #{imgUrl,jdbcType=VARCHAR},
+      video_path = #{videoPath,jdbcType=VARCHAR},
+      video_url = #{videoUrl,jdbcType=VARCHAR},
+      video_title = #{videoTitle,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      m3u8_url = #{m3u8Url,jdbcType=VARCHAR},
+    </trim>
+  </insert>
+  <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="com.ruanjian.springcloud.entity.Video" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into video
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="imgPath != null">
+        img_path,
+      </if>
+      <if test="imgUrl != null">
+        img_url,
+      </if>
+      <if test="videoPath != null">
+        video_path,
+      </if>
+      <if test="videoUrl != null">
+        video_url,
+      </if>
+      <if test="videoTitle != null">
+        video_title,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="m3u8Url != null">
+        m3u8_url,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="imgPath != null">
+        #{imgPath,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUrl != null">
+        #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="videoPath != null">
+        #{videoPath,jdbcType=VARCHAR},
+      </if>
+      <if test="videoUrl != null">
+        #{videoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="videoTitle != null">
+        #{videoTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="m3u8Url != null">
+        #{m3u8Url,jdbcType=VARCHAR},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=INTEGER},
+      </if>
+      <if test="imgPath != null">
+        img_path = #{imgPath,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUrl != null">
+        img_url = #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="videoPath != null">
+        video_path = #{videoPath,jdbcType=VARCHAR},
+      </if>
+      <if test="videoUrl != null">
+        video_url = #{videoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="videoTitle != null">
+        video_title = #{videoTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="m3u8Url != null">
+        m3u8_url = #{m3u8Url,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

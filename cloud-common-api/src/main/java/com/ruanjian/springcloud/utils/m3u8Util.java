@@ -5,6 +5,9 @@ import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.lang.UUID;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.http.HttpUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
 
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -21,7 +24,16 @@ import java.util.regex.Pattern;
  * 创建时间：2020-03-10 09:22
  * 创 建 人：renhao
  */
+@Configuration
 public class m3u8Util {
+    public static String UPLOADEDVIDEOPATH;
+
+    //注入
+    @Autowired(required = false)
+    public void setUPLOADED_FOLDER(@Value("${cbs.uploadVideoPath}") String UPLOADEDVIDEOPATH) {
+        m3u8Util.UPLOADEDVIDEOPATH = UPLOADEDVIDEOPATH;
+    }
+
     /**
      * ts文件转mp4
      */
@@ -36,18 +48,18 @@ public class m3u8Util {
         String prefix = url.substring(0, i + 1);
         //请输入视频地址
         HttpURLConnection con;
-        FileOutputStream fs;
         InputStream is;
         BufferedInputStream bs = null;
         StringBuilder path = new StringBuilder();
-        path.append("/Users/renhao/Downloads/xuechengzaixian/video/");
+//        path.append("/Users/renhao/Downloads/xuechengzaixian/video/");
+        path.append(UPLOADEDVIDEOPATH);
         path.append(DateUtil.today() + "/");
         //文件名
         String fileName = UUID.fastUUID().toString();
         path.append(fileName + ".ts");
 
         File file = FileUtil.touch(path.toString());
-        fs = new FileOutputStream(file, true);
+        FileOutputStream fs = new FileOutputStream(file, true);
         for (int j = 0; j < result.size(); j++) {
             try {
                 con = (HttpURLConnection) new URL(prefix + result.get(j)).openConnection();
@@ -56,10 +68,8 @@ public class m3u8Util {
                 is = con.getInputStream();
                 //网络流写为文件流
                 bs = new BufferedInputStream(is);
-                //outStream
-                byte[] bytes = new byte[3072];
+                byte[] bytes = new byte[6000000];
                 int line;
-                //write
                 while ((line = bs.read(bytes)) != -1) {
                     fs.write(bytes, 0, line);
                     fs.flush();
