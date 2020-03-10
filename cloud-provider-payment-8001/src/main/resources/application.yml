@@ -1,0 +1,33 @@
+server:
+  port: 8001
+#模块名称
+spring:
+  application:
+    name: cloud-payment-service
+#数据库
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://172.16.156.154:3306/renrenfast?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+    username: root
+    druid:
+      password: Aini149147
+#mybatis
+mybatis:
+  mapper-locations: classpath:mappers/*.xml
+  type-aliases-package: com.ruanjian.springcloud.entity
+#Eureka
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://192.168.2.121:7001/eureka
+#http://localhost:7001/eureka
+
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://localhost:7001/eureka
+#    register-with-eureka: true #是否注册进入EurekaServer(默认True)
+#    fetch-registry: true #是否从Eureka抓取已有的注册信息，默认是true,是为了配合ribbon做负载均衡使用，单节点无所谓

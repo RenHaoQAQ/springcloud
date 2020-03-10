@@ -1,0 +1,19 @@
+server:
+  port: 80
+#模块名称
+spring:
+  application:
+    name: cloud-consumer-order
+#数据库
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://172.16.156.146:3306/renrenfast?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+    username: root
+    druid:
+      password: Aini149147
+
+#mybatis
+mybatis:
+  mapper-locations: classpath:mappers/*.xml
+  type-aliases-package: com.ruanjian.springcloud.entity
