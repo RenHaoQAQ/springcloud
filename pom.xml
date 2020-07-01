@@ -44,7 +44,7 @@
         <spring-cloud-alibaba.version>2.1.0.RELEASE</spring-cloud-alibaba.version>
         <mysql-connector-java.version>8.0.13</mysql-connector-java.version>
         <commons-lang3.version>3.9</commons-lang3.version>
-        <quartz.version>1.8.4</quartz.version>
+        <quartz.version>2.3.2</quartz.version>
         <jna.version>4.2.2</jna.version>
         <jna-platform.version>5.4.0</jna-platform.version>
         <spring-context-support.version>4.3.14.RELEASE</spring-context-support.version>
